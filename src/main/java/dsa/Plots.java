@@ -69,11 +69,20 @@ public final class Plots {
             ops[i * 3] = series(w, v, structures[i], 1);
             ops[i * 3 + 1] = series(w, v, structures[i], 2);
             ops[i * 3 + 2] = series(w, v, structures[i], 3);
-            opNames[i * 3] = structures[i] + " steps";
-            opNames[i * 3 + 1] = structures[i] + " moves";
-            opNames[i * 3 + 2] = structures[i] + " comparisons";
+            opNames[i * 3] = label(structures[i] + " steps", ops[i * 3]);
+            opNames[i * 3 + 1] = label(structures[i] + " moves", ops[i * 3 + 1]);
+            opNames[i * 3 + 2] = label(structures[i] + " comparisons", ops[i * 3 + 2]);
         }
         chart(dir.resolve(prefix + "_ops.png"), title, "operations count (log scale)", opNames, ops);
+    }
+
+    private static String label(String name, double[] values) {
+        for (double value : values) {
+            if (value > 0) {
+                return name;
+            }
+        }
+        return name + " = 0";
     }
 
     private static String[] structuresOf(String w, String v) {
@@ -182,9 +191,8 @@ public final class Plots {
 
         for (int s = 0; s < values.length; s++) {
             g.setColor(COLORS[s % COLORS.length]);
-            g.setStroke(s % 3 == 1
-                    ? new BasicStroke(2.2f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, 10f, new float[]{9f, 6f}, 0f)
-                    : new BasicStroke(2.2f));
+            g.setStroke(stroke(s, values.length));
+            int marker = Math.max(4, 11 - 2 * s);
             int previousX = -1;
             int previousY = -1;
             for (int k = 0; k < sizes.length; k++) {
@@ -198,7 +206,7 @@ public final class Plots {
                 if (previousX >= 0) {
                     g.drawLine(previousX, previousY, x, y);
                 }
-                g.fillOval(x - 4, y - 4, 8, 8);
+                g.fillOval(x - marker / 2, y - marker / 2, marker, marker);
                 previousX = x;
                 previousY = y;
             }
@@ -216,6 +224,18 @@ public final class Plots {
 
         g.dispose();
         ImageIO.write(image, "png", file.toFile());
+    }
+
+    private static BasicStroke stroke(int index, int total) {
+        if (total <= 2) {
+            return index == 0
+                    ? new BasicStroke(2.2f)
+                    : new BasicStroke(2.2f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, 10f,
+                            new float[]{9f, 6f}, 0f);
+        }
+        float period = 5f * total;
+        return new BasicStroke(2.6f, BasicStroke.CAP_BUTT, BasicStroke.JOIN_MITER, 10f,
+                new float[]{5f, period - 5f}, 5f * index);
     }
 
     private static void drawVertical(Graphics2D g, String text, int x, int y) {

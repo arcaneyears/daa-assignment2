@@ -64,3 +64,5 @@ workload,variant,structure,n,time_ms,steps,moves,comparisons
 `variant` is `head` or `middle` for W3 and `-` for the other workloads.
 Counters are incremented inside the operations: `steps` - array cell read or node hop,
 `moves` - array element shift or pointer update, `comparisons` - comparison of two elements.
+The structure is filled before the clock starts and the counters are reset after the fill,
+so every row covers only the measured phase of the workload.

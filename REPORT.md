@@ -178,8 +178,11 @@ W4 Priority Processing:
 ![W4 time](results/plots/w4_time.png)
 ![W4 operations](results/plots/w4_ops.png)
 
-In the charts a dashed line is the `moves` series (and `MyLinkedList` on the time charts).
-A series that is constantly zero (for example `moves` in W2) is not drawn on the logarithmic axis.
+On the operation charts the series use staggered dash patterns, so series with identical values
+(for example `steps` and `comparisons` of both structures in W2) are visible as alternating colours
+along the same line. A series that is constantly zero cannot be drawn on a logarithmic axis and is
+marked `= 0` in the legend. The fill phase is not timed and not counted: the counters are reset
+after the structure is built, so every row describes only the measured phase of the workload.
 
 ---
 
