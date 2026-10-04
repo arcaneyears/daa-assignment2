@@ -1,6 +1,6 @@
 # DAA Assignment 2 - In-Memory Workload Engine
 
-Author: Taubakabyl Nurlybek
+Author: Yersaiyn Taubay, group 2524
 
 Three data structures written from scratch over `int[]` and nodes, with operation counters,
 a benchmark over 4 workloads and generated plots.

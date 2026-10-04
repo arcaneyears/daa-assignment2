@@ -1,6 +1,6 @@
 # DAA Assignment 2 - Report
 
-Author: Taubakabyl Nurlybek
+Author: Yersaiyn Taubay, group 2524
 Structures: `DynamicArray`, `MyLinkedList` (singly linked, head + tail), `MinHeap` (array based binary heap).
 All of them store primitive `int`, no `java.util` collections are used in `src/main/java`.
 
