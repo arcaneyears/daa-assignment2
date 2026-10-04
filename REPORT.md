@@ -183,6 +183,9 @@ On the operation charts the series use staggered dash patterns, so series with i
 along the same line. A series that is constantly zero cannot be drawn on a logarithmic axis and is
 marked `= 0` in the legend. The fill phase is not timed and not counted: the counters are reset
 after the structure is built, so every row describes only the measured phase of the workload.
+In W3 the working index is kept at exactly n/2 as the task requires; because the 1 000 insertions
+temporarily grow the structure to n + 1 000 elements, at n = 100 index 50 is nearer to the head
+than to the middle, which is why the `head` and `middle` rows are so close at that size.
 
 ---
 

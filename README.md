@@ -52,7 +52,9 @@ java -cp target/classes dsa.Main plots
 - 3 warm-up runs + 5 measured runs per case, median time is reported
 - W1: 10 000 `get(random index)`
 - W2: 1 000 `contains(x)`, half present and half absent
-- W3: 1 000 insertions + 1 000 removals at index 0 (`head`) and at index n/2 (`middle`)
+- W3: 1 000 insertions + 1 000 removals at index 0 (`head`) and at index n/2 (`middle`);
+  the index stays exactly n/2 as specified, so at n = 100 the structure temporarily grows to
+  1 100 elements and index 50 is closer to the head than to the middle of the grown structure
 - W4: n `insert(x)` + n `extractMin()` with a non-decreasing order check
 
 ## CSV format
